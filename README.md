@@ -1,4 +1,4 @@
-# Тестовое задание Aviasales ([Frontend](https://github.com/KosyanMedia/test-tasks/tree/master/aviasales_frontend))
+# Попытка попроктиковаться, сделав тестовое задание Aviasales ([Frontend](https://github.com/KosyanMedia/test-tasks/tree/master/aviasales_frontend))
 
 ---
 
@@ -26,6 +26,7 @@ aviasales-service, - в файле происходит обращение к с
    - there_arrival, - суммарное колличество чесов, которое потребуется на полёт
    - there_stops, - массив с пересадками
    - there_duration, - общее время пелелёта в минутах
+С моей точки зрения такой уклад не очень хорош. Следует переделать. 
 
 
 #### Сomponents 
