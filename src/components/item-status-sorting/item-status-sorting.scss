@@ -1,0 +1,42 @@
+@import '../../global-style/variables.scss';
+
+.status-sorting {
+  &__list {
+    display: flex;
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+  }
+  &__item {
+    cursor: pointer;
+    width: 25.2rem;
+    height: 5rem;
+    text-align: center;
+    border: .1rem solid #dfe5ec;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: $font-size-sm;
+    letter-spacing: .05rem;
+    text-transform: uppercase;
+    color: $main-color;
+    &:not(.status-sorting-item-active) {
+      &:hover { background-color: #dfe5ec; }
+    }
+    &:first-child {
+      border-top-left-radius: .5rem;
+      border-bottom-left-radius: .5rem;
+    }
+    &:last-child {
+      border-top-right-radius: .5rem;
+      border-bottom-right-radius: .5rem;
+    }
+    &.status-sorting-item-active {
+      background-color: $color-blue;
+      color: #fff;
+      &:hover { background-color: #1d84d6; }
+    }
+  }
+}

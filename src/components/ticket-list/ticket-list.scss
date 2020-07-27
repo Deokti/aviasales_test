@@ -1,0 +1,54 @@
+@import '../../global-style/variables.scss';
+
+.ticket-list {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0;
+  &__item {
+    width: 100%;;
+    min-height: 18.4rem;
+    background: #FFFFFF;
+    box-shadow: 0 .2rem .8rem rgba(0, 0, 0, 0.1);
+    border-radius: .5rem;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    &-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    &-price {
+      font-size: $font-size-extra;
+      line-height: $line-height-extra;
+      color: $color-blue;
+      margin-bottom: 0;
+    }
+    &-there,
+    &-back {
+      display: flex;
+      justify-content: space-between;
+    }
+    &-there {
+      padding-top: 2rem;
+    }
+    &-back { padding-top: 1rem; }
+  }
+  &__element { 
+    width: 11rem;
+    text-align: left; 
+  }
+  &__title {
+    font-size: $font-size-sm;
+    line-height: $line-height-md;
+    letter-spacing: .05rem;
+    text-transform: uppercase;
+    color: $color-gray;
+  }
+  &__value {
+    display: block;
+    font-size: $font-size-lg;
+    line-height: 2.1rem;
+    color: #4A4A4A;
+  }
+  
+}

@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
+@import '../../global-style/bootstrap-reboot.min.scss';
+@import '../../global-style/transition.scss';
+
+
+html { font-size: 10px; }
+body {
+  font-family: 'Open Sans', sans-serif; 
+  font-weight: 600; 
+  background-color: #F3F7FA;
+}
+
+
+.container {
+  max-width: 76rem;
+  margin: 0 auto;
+}
+
+.App {
+  &-header {
+    padding-top: 5rem;
+    text-align: center;
+  }
+  &-container {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 3.2rem;
+    &-right-tickets {
+      padding-top: 2rem;
+    }
+  }
+}
