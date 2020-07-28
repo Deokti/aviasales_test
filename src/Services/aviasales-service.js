@@ -33,7 +33,6 @@ export default class AviasalesService {
       there: {
         there_origin: item.segments[0].origin,
         there_destination: item.segments[0].destination,
-        there_date: item.segments[0].date,
         there_duration: item.segments[0].duration,
         there_departure: this._getDepartureTime(item.segments[0].date),
         there_arrival: this._getTimeFromMins(item.segments[0].duration),
@@ -43,7 +42,6 @@ export default class AviasalesService {
       back: {
         back_origin: item.segments[1].origin,
         back_destination: item.segments[1].destination,
-        back_date: item.segments[1].date,
         back_duration: item.segments[1].duration,
         back_departure: this._getDepartureTime(item.segments[1].date),
         back_arrival: this._getTimeFromMins(item.segments[1].duration),

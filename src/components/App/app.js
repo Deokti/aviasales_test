@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Header from '../header';
 import AmountTransfersFilter from '../amount-transfers-filter';
 import ItemStatusSorting from '../item-status-sorting';
-import TicketList from '../ticket-list';
+import TicketList from '../Ticket-list';
 import AviasalesService from '../../Services/aviasales-service';
 
 import Preload from '../preloader';
@@ -20,11 +20,11 @@ export default class App extends Component {
     loading: true,
     marginRightBody: calculateScroll(),
     filterCheckbox: [
-      { name: 'all', label: 'Все', checked: true },
+      { name: 'all', label: 'Все', checked: false },
       { 
         name: 'no-transfers', 
         label: 'Без пересадок', 
-        checked: false, 
+        checked: true, 
         numberOfTransfers: 0 
       },
       { 
@@ -61,7 +61,7 @@ export default class App extends Component {
   onToggleFilter = (array, name, currentState) => {
     const elementIndex = array.findIndex((item) => item.name === name);
     const currentElement = array[elementIndex];
-    const currentElementName = { ...currentElement, checked: currentState }
+    let currentElementName = { ...currentElement, checked: currentState }
 
     return [
       ...array.slice(0, elementIndex),
