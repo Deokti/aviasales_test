@@ -13,7 +13,12 @@
 /package-lock.json
 /yarn.lock
 
+/firebase.json
+
 # misc
+.firebaserc
+.firebase
+
 .DS_Store
 .env.local
 .env.development.local
