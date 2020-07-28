@@ -1,4 +1,8 @@
-# Тестовое задание Aviasales ([Frontend](https://github.com/KosyanMedia/test-tasks/tree/master/aviasales_frontend))
+# Попытка попроктиковаться, сделав тестовое задание Aviasales ([Frontend](https://github.com/KosyanMedia/test-tasks/tree/master/aviasales_frontend))
+
+---
+
+Когда приложение будет сделано (хотя оно уже и работает), здесь будет находиться ссылка на рабочий проект. 
 
 ---
 
