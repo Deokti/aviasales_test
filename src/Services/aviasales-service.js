@@ -37,7 +37,7 @@ export default class AviasalesService {
         there_duration: item.segments[0].duration,
         there_departure: this._getDepartureTime(item.segments[0].date),
         there_arrival: this._getTimeFromMins(item.segments[0].duration),
-        there_travel: this._getTrevelTime(item.segments[0].duration),
+        there_travel: this._getTrevelTime(item.segments[0].date, item.segments[0].duration),
         there_stops: item.segments[0].stops
       },
       back: {
@@ -47,24 +47,38 @@ export default class AviasalesService {
         back_duration: item.segments[1].duration,
         back_departure: this._getDepartureTime(item.segments[1].date),
         back_arrival: this._getTimeFromMins(item.segments[1].duration),
-        back_travel: this._getTrevelTime(item.segments[1].duration),
+        back_travel:this._getTrevelTime(item.segments[1].date, item.segments[1].duration),
         back_stops: item.segments[1].stops,
       }
     }
   }
 
-  
+  // Если число меньше 10, то впереди добавляется ноль
+  _lessThanTenAddZero = (number) => number < 10 ? `0${number}` : number; 
+
+  // Вычисляется время взлёта самолёта
+  _getDepartureTime = (time) => `${this._lessThanTenAddZero(new Date(time).getHours())}:${this._lessThanTenAddZero(new Date(time).getMinutes())}`;
+
+  // Вычисляется время прилёта самолёта
+  _getTrevelTime = (startDepartite, minutes) => {
+    const date = new Date(startDepartite)
+    const getHours = this._getTimeFromMins(minutes).slice(0, 2);
+    const getMinutes = this._getTimeFromMins(minutes).slice(4, 6)
+
+    date.setHours(date.getHours() + parseInt(getHours));
+    date.setMinutes(date.getMinutes() + parseInt(getMinutes));
+ 
+    return `${this._lessThanTenAddZero(date.getHours())}:${this._lessThanTenAddZero(date.getMinutes())}`;
+  }
+
+  // Функция, которая трансформирует минцты в часы и минуты, 
+  // Позволяя узнать, сколько вообще часов занял полёт
   _getTimeFromMins = (mins) => {
     const hours = Math.trunc(mins/60);
     const minutes = mins % 60;
-    return `${this._addZero(hours)}ч ${this._addZero(minutes)}м`
+    return `${this._lessThanTenAddZero(hours)}ч ${this._lessThanTenAddZero(minutes)}м`
   };
 
-  _addZero = (number) => number < 10 ? `0${number}` : number; 
-
-  _getTrevelTime = (minutes) => `${this._addZero(Math.ceil(minutes  / 60))}:${this._addZero((minutes % 60))}`
-
-  _getDepartureTime = (time) => `${this._addZero(new Date(time).getHours())}:${this._addZero(new Date().getMinutes())}`;
-
+  // В цене добавляется пробел у большим чисел 10 000, 15 000
   _transfrormPrice = (price) => String(price).replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ');
 }

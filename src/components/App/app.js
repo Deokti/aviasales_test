@@ -67,23 +67,40 @@ export default class App extends Component {
 
   returnAmountTransfers = (ticket, number) => ticket.there.there_stops.length === number && ticket.back.back_stops.length === number;
 
+  // Условия действуют так, что срабатывает самое верхнее, 
+  // которые активное. Даже несмотря на то, что активно может быть несколько.
+  // Таким образом нужно сделать так, чтобы возвращался массив, 
+  // в котором все условия соблюдены и при этом не было конфликтов.
   updateFilterStatus = (ticketsList, arrayCheckbox) => {  
     return ticketsList.filter(ticket => {
-      if (!!this.searchFilterCheckbox(arrayCheckbox, 'all')) return ticket;
-  
-      if (!!this.searchFilterCheckbox(arrayCheckbox, 'no-transfers')) {
+      if (!!this.searchFilterCheckbox(arrayCheckbox, 'all')) {
+        console.log('Запуск all')
+        return ticket
+      }
+      else if (!!this.searchFilterCheckbox(arrayCheckbox, 'no-transfers')) {
+        console.log('Запуск no-transfers')
         return this.returnAmountTransfers(ticket, 0);
       }
-      if (!!this.searchFilterCheckbox(arrayCheckbox, 'one-transfers')) {
+      else if (!!this.searchFilterCheckbox(arrayCheckbox, 'one-transfers')) {
+        console.log('Запуск one-transfers')
         return this.returnAmountTransfers(ticket, 1);
       }
-      if (!!this.searchFilterCheckbox(arrayCheckbox, 'two-transfers')) {
+      else if (!!this.searchFilterCheckbox(arrayCheckbox, 'two-transfers')) {
+        console.log('Запуск two-transfers')
         return this.returnAmountTransfers(ticket, 2);
       }
-      if (!!this.searchFilterCheckbox(arrayCheckbox, 'three-transfers')) {
+      else if (!!this.searchFilterCheckbox(arrayCheckbox, 'three-transfers')) {
+        console.log('Запуск three-transfers')
         return this.returnAmountTransfers(ticket, 3);
       }
+      return ticket;
     });
+  }
+
+  componentDidUpdate(_, prevState) {
+    if (this.state.filterCheckbox !== prevState.filterCheckbox) {
+      this.updateFilterStatus(this.state.filterCheckbox, this.state.ticketsList);
+    }
   }
 
   getDataFromService = () => {
