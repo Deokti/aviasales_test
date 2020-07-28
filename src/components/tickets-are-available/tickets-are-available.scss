@@ -1,0 +1,27 @@
+@import '../../global-style/variables.scss';
+
+.tickets-are-available {
+  width: 100%;;
+  min-height: 12rem;
+  background: #FFFFFF;
+  box-shadow: 0 .2rem .8rem rgba(0, 0, 0, 0.1);
+  border-radius: .5rem;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  &__title {
+    font-size: $font-size-extra;
+    line-height: $line-height-extra;
+    color: $color-blue;
+    margin-bottom: 0;
+  }
+  &__subtitle {
+    display: block;
+    padding-top: 2rem;
+
+    font-size: $font-size-lg;
+    letter-spacing: .05rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: #A0B0B9;
+  }
+}

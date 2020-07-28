@@ -21,10 +21,30 @@ export default class App extends Component {
     marginRightBody: calculateScroll(),
     filterCheckbox: [
       { name: 'all', label: 'Все', checked: true },
-      { name: 'no-transfers', label: 'Без пересадок', checked: false },
-      { name: 'one-transfers', label: '1 пересадка', checked: false },
-      { name: 'two-transfers', label: '2 пересадки', checked: false },
-      { name: 'three-transfers', label: '3 пересадки', checked: false },
+      { 
+        name: 'no-transfers', 
+        label: 'Без пересадок', 
+        checked: false, 
+        numberOfTransfers: 0 
+      },
+      { 
+        name: 'one-transfers', 
+        label: '1 пересадка', 
+        checked: false, 
+        numberOfTransfers: 1 
+      },
+      { 
+        name: 'two-transfers', 
+        label: '2 пересадки', 
+        checked: false, 
+        numberOfTransfers: 2 
+      },
+      { 
+        name: 'three-transfers', 
+        label: '3 пересадки', 
+        checked: false, 
+        numberOfTransfers: 3 
+      },
     ],
   }
 
@@ -62,38 +82,22 @@ export default class App extends Component {
     }
   }
 
-  searchFilterCheckbox = (arrayCheckbox, nameCheckbox) => arrayCheckbox
-    .find((checkbox) => checkbox.name === nameCheckbox && checkbox.checked);
 
-  returnAmountTransfers = (ticket, number) => ticket.there.there_stops.length === number && ticket.back.back_stops.length === number;
-
-  // Условия действуют так, что срабатывает самое верхнее, 
-  // которые активное. Даже несмотря на то, что активно может быть несколько.
-  // Таким образом нужно сделать так, чтобы возвращался массив, 
-  // в котором все условия соблюдены и при этом не было конфликтов.
+  // Возращаем массив билетов, с помощью filter, тем самым фильтруя их
+  // Внутри обращаемся к arrayCheckbox и на каждой итерации получаем элемент
+  // После чего возвращаем те билеты, у которых есть checked: true, b чьё имя
+  // является all или numberOfTransfers схож с колличеством перелётов в билете
   updateFilterStatus = (ticketsList, arrayCheckbox) => {  
     return ticketsList.filter(ticket => {
-      if (!!this.searchFilterCheckbox(arrayCheckbox, 'all')) {
-        console.log('Запуск all')
-        return ticket
-      }
-      else if (!!this.searchFilterCheckbox(arrayCheckbox, 'no-transfers')) {
-        console.log('Запуск no-transfers')
-        return this.returnAmountTransfers(ticket, 0);
-      }
-      else if (!!this.searchFilterCheckbox(arrayCheckbox, 'one-transfers')) {
-        console.log('Запуск one-transfers')
-        return this.returnAmountTransfers(ticket, 1);
-      }
-      else if (!!this.searchFilterCheckbox(arrayCheckbox, 'two-transfers')) {
-        console.log('Запуск two-transfers')
-        return this.returnAmountTransfers(ticket, 2);
-      }
-      else if (!!this.searchFilterCheckbox(arrayCheckbox, 'three-transfers')) {
-        console.log('Запуск three-transfers')
-        return this.returnAmountTransfers(ticket, 3);
-      }
-      return ticket;
+      return arrayCheckbox.find(checkbox => {
+        return (
+          checkbox.checked && (
+            checkbox.name === 'all' ||
+            (checkbox.numberOfTransfers === ticket.there.there_stops.length && 
+              checkbox.numberOfTransfers === ticket.back.back_stops.length)
+          )
+        )
+      });
     });
   }
 
