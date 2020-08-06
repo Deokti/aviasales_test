@@ -1,4 +1,4 @@
-# Попытка попроктиковаться, сделав тестовое задание ([Frontend](https://github.com/KosyanMedia/test-tasks/tree/master/aviasales_frontend))
+# Желание попроктиковаться, сделав тестовое задание ([Frontend](https://github.com/KosyanMedia/test-tasks/tree/master/aviasales_frontend))
 
 ---
 
